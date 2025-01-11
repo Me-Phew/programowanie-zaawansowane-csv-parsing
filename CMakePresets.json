@@ -1,0 +1,92 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+      }
+    },
+    {
+      "name": "mingw64",
+      "inherits": "base",
+      "displayName": "MinGW64",
+      "description": "Debug preset using mingw64",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_C_COMPILER": "C:/msys64/mingw64/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "C:/msys64/mingw64/bin/g++.exe",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "ucrt64",
+      "inherits": "base",
+      "displayName": "UCRT64",
+      "description": "Debug preset using ucrt64",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-release",
+      "inherits": "base",
+      "description": "Release preset for Linux",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/linux-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "windows-release",
+      "inherits": "base",
+      "description": "Release preset for Windows",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/windows-release",
+      "toolchainFile": "${sourceDir}/mingw-w64-x86_64.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_SYSTEM_NAME": "Windows",
+        "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "mingw64-build",
+      "hidden": false,
+      "configurePreset": "mingw64",
+      "description": "Debug build preset for development using mingw64",
+      "jobs": 4
+    },
+    {
+      "name": "ucrt64-build",
+      "hidden": false,
+      "configurePreset": "ucrt64",
+      "description": "Debug build for development using ucrt64",
+      "jobs": 4
+    },
+    {
+      "name": "linux-release-build",
+      "configurePreset": "linux-release",
+      "description": "Release build for Linux",
+      "hidden": false
+    },
+    {
+      "name": "windows-release-build",
+      "configurePreset": "windows-release",
+      "description": "Release build for Windows",
+      "hidden": false
+    }
+  ]
+}
