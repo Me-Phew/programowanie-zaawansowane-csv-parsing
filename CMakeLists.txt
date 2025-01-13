@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(ProjectName)
+project(CsvParsing)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCES src/main.cpp)
+include_directories(src/app src/lineParser src/logger src/treeData)
 
-add_executable(ProjectName ${SOURCES})
+set(SOURCES src/main.cpp src/app/app.cpp src/lineParser/lineData.cpp src/logger/logger.cpp src/treeData/treeData.cpp)
+
+add_executable(CsvParsing ${SOURCES})
 
 # Compile with all warnings, treat warnings as errors
 if (MSVC)
