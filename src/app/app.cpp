@@ -167,6 +167,7 @@ int App::handleCalculateSumsBetweenDates() {
   float autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum;
 
   std::cout << "Podaj datę początkową (dd.mm.yyyy hh:mm): ";
+  std::cin.ignore();
   std::getline(std::cin, startDate);
   std::cout << "Podaj datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
