@@ -24,19 +24,17 @@
 */
 var NAVTREE =
 [
-  [ "Project Name", "index.html", [
+  [ "CSV Parsing", "index.html", [
     [ "README", "md_README.html", [
-      [ "Programowanie zaawansowane - szablon", "md_README.html#autotoc_md0", [
-        [ "Spis treci", "md_README.html#autotoc_md1", [
-          [ "Uycie", "md_README.html#autotoc_md2", null ],
-          [ "Funkcjonalno", "md_README.html#autotoc_md3", null ],
-          [ "Licencja", "md_README.html#autotoc_md4", null ]
-        ] ]
-      ] ]
+      [ "Implementacja wczytywania danych z pliku CSV w C++", "md_README.html#autotoc_md0", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ]
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
