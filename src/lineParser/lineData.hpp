@@ -18,67 +18,97 @@
 
 using namespace std;
 
-/// \class LineData
-/// \brief Klasa reprezentuj�ca dane jednego wiersza z pliku CSV.
+/**
+ * @class LineData
+ * @brief Klasa reprezentująca dane jednego wiersza z pliku CSV.
+ *
+ * Klasa umożliwia wczytywanie, wyświetlanie oraz serializację danych wiersza.
+ */
 class LineData {
 public:
-    /// \brief Konstruktor przetwarzaj�cy wiersz danych z formatu CSV.
-    /// \param line Wiersz danych wej�ciowych.
+    /**
+     * @brief Konstruktor przetwarzający wiersz danych z formatu CSV.
+     * @param line Wiersz danych wejściowych w formacie tekstowym (CSV).
+     */
     explicit LineData(const string& line);
 
-    /// \brief Konstruktor odczytuj�cy dane z pliku binarnego.
-    /// \param in Strumie� wej�ciowy.
+    /**
+    * @brief Konstruktor odczytujący dane z pliku binarnego.
+    * @param in Strumień wejściowy pliku binarnego.
+    */
     LineData(ifstream& in);
 
-    /// \brief Wypisuje wszystkie dane na standardowe wyj�cie.
+    /**
+     * @brief Wypisuje wszystkie dane (wraz z datą) na standardowe wyjście.
+     */
     void print() const;
 
-    /// \brief Wypisuje tylko dane liczbowe (bez daty) na standardowe wyj�cie.
+    /**
+     * @brief Wypisuje tylko dane liczbowe (bez daty) na standardowe wyjście.
+     */
     void printData() const;
 
-    /// \brief Zwraca dane jako ci�g znak�w.
-    /// \return Dane w formacie tekstowym.
+    /**
+     * @brief Zwraca wszystkie dane jako łańcuch znaków.
+     * @return Dane w formacie tekstowym (data + wartości liczbowe).
+     */
     string printString();
 
-    /// \brief Serializuje obiekt do pliku binarnego.
-    /// \param out Strumie� wyj�ciowy.
+    /**
+    * @brief Serializuje obiekt do pliku binarnego.
+    * @param out Strumień wyjściowy pliku binarnego.
+    */
     void serialize(ofstream& out) const;
 
-    /// \brief Deserializuje obiekt z pliku binarnego.
-    /// \param in Strumie� wej�ciowy.
+    /**
+    * @brief Deserializuje obiekt z pliku binarnego.
+    * @param in Strumień wejściowy pliku binarnego.
+    */
     void deserialize(ifstream& in);
 
-    /// \brief Zwraca dat�.
-    /// \return Data w formacie tekstowym.
+    /**
+    * @brief Zwraca datę z wiersza.
+    * @return Data w formacie tekstowym.
+    */
     string getDate() const { return date; }
 
-    /// \brief Zwraca warto�� autokonsumpcji.
-    /// \return Autokonsumpcja jako liczba zmiennoprzecinkowa.
+    /**
+    * @brief Zwraca wartość autokonsumpcji.
+    * @return Wartość autokonsumpcji jako liczba zmiennoprzecinkowa.
+    */
     float getAutokonsumpcja() const { return autokonsumpcja; }
 
-    /// \brief Zwraca warto�� eksportu.
-    /// \return Eksport jako liczba zmiennoprzecinkowa.
+    /**
+    * @brief Zwraca wartość eksportu.
+    * @return Wartość eksportu jako liczba zmiennoprzecinkowa.
+    */
     float getEksport() const { return eksport; }
 
-    /// \brief Zwraca warto�� importu.
-    /// \return Import jako liczba zmiennoprzecinkowa.
+    /**
+    * @brief Zwraca wartość importu.
+    * @return Wartość importu jako liczba zmiennoprzecinkowa.
+    */
     float getImport() const { return import; }
 
-    /// \brief Zwraca warto�� poboru.
-    /// \return Pob�r jako liczba zmiennoprzecinkowa.
+    /**
+    * @brief Zwraca wartość poboru.
+    * @return Wartość poboru jako liczba zmiennoprzecinkowa.
+    */
     float getPobor() const { return pobor; }
 
-    /// \brief Zwraca warto�� produkcji.
-    /// \return Produkcja jako liczba zmiennoprzecinkowa.
+    /**
+     * @brief Zwraca wartość produkcji.
+     * @return Wartość produkcji jako liczba zmiennoprzecinkowa.
+     */
     float getProdukcja() const { return produkcja; }
 
 private:
-    string date; ///< Data wiersza.
-    float autokonsumpcja; ///< Autokonsumpcja w W.
-    float eksport; ///< Eksport w W.
-    float import; ///< Import w W.
-    float pobor; ///< Pob�r w W.
-    float produkcja; ///< Produkcja w W.
+    string date;
+    float autokonsumpcja;
+    float eksport;
+    float import;
+    float pobor;
+    float produkcja;
 };
 
 #endif /* LINEDATA_HPP */

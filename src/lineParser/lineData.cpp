@@ -16,8 +16,6 @@
 
 using namespace std;
 
-/// \brief Konstruktor przetwarzaj�cy wiersz danych z formatu CSV.
-/// \param line Wiersz danych wej�ciowych.
 LineData::LineData(const string& line) {
     vector<string> values;
     stringstream ss(line);
@@ -38,31 +36,27 @@ LineData::LineData(const string& line) {
     logger.log("Wczytano linie: " + this->printString());
 }
 
-/// \brief Konstruktor odczytuj�cy dane z pliku binarnego.
-/// \param in Strumie� wej�ciowy.
 LineData::LineData(ifstream& in) {
     deserialize(in);
 }
 
-/// \brief Wypisuje wszystkie dane na standardowe wyj�cie.
+
 void LineData::print() const {
     cout << date << " " << autokonsumpcja << " " << eksport << " " << import << " " << pobor << " " << produkcja << endl;
 }
 
-/// \brief Wypisuje tylko dane liczbowe (bez daty) na standardowe wyj�cie.
+
 void LineData::printData() const {
     cout << "\t\t\t\t" << autokonsumpcja << " " << eksport << " " << import << " " << pobor << " " << produkcja << endl;
 }
 
-/// \brief Zwraca dane jako ci�g znak�w.
-/// \return Dane w formacie tekstowym.
+
+
 string LineData::printString() {
     return date + " " + to_string(autokonsumpcja) + " " + to_string(eksport) + " " + to_string(import) + " " +
         to_string(pobor) + " " + to_string(produkcja);
 }
 
-/// \brief Serializuje obiekt do pliku binarnego.
-/// \param out Strumie� wyj�ciowy.
 void LineData::serialize(ofstream& out) const {
     size_t dateSize = date.size();
     out.write(reinterpret_cast<const char*>(&dateSize), sizeof(dateSize));
@@ -74,8 +68,6 @@ void LineData::serialize(ofstream& out) const {
     out.write(reinterpret_cast<const char*>(&produkcja), sizeof(produkcja));
 }
 
-/// \brief Deserializuje obiekt z pliku binarnego.
-/// \param in Strumie� wej�ciowy.
 void LineData::deserialize(ifstream& in) {
     size_t dateSize;
     in.read(reinterpret_cast<char*>(&dateSize), sizeof(dateSize));

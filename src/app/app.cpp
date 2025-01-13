@@ -117,7 +117,7 @@ int App::handleLoadDataFromFile() {
     return -1;
   }
 
-  vector<LineData> data; ///< Wektor przechowuj�cy dane wierszy z pliku.
+  vector<LineData> data;
   std::string line;
 
   while (std::getline(file, line)) {
@@ -130,9 +130,9 @@ int App::handleLoadDataFromFile() {
 
   file.close();
   cout << "Dane zostały załadowane pomyślnie." << endl;
-  cout << "Loaded " << data.size() << " lines" << endl;
-  cout << "Found " << loggerErrorCount << " faulty lines" << endl;
-  cout << "Check log and log_error files for more details" << endl;
+  cout << "Załadowano " << data.size() << " linii" << endl;
+  cout << "Znaleziono " << loggerErrorCount << " niepoprawnych linii" << endl;
+  cout << "Sprawdź pliki log i log_error, aby uzyskać więcej informacji" << endl;
 
   return 0;
 }
@@ -147,13 +147,13 @@ int App::handleGetDataBetweenDates() {
   std::string startDate, endDate;
   std::vector<LineData> filteredData;
 
-  std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate);
-  std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
 
   filteredData = treeData.getDataBetweenDates(startDate, endDate);
-  std::cout << "Data between " << startDate << " and " << endDate << ":" << std::endl;
+  std::cout << "Dane pomiędzy " << startDate << " a " << endDate << ":" << std::endl;
   for (const auto& ld : filteredData) {
     ld.print();
   }
@@ -165,13 +165,13 @@ int App::handleCalculateSumsBetweenDates() {
   std::string startDate, endDate;
   float autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum;
 
-  std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate);
-  std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
 
   treeData.calculateSumsBetweenDates(startDate, endDate, autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum);
-  std::cout << "Sums between " << startDate << " and " << endDate << ":" << std::endl;
+  std::cout << "Suma pomiędzy " << startDate << " and " << endDate << ":" << std::endl;
   std::cout << "Autokonsumpcja: " << autokonsumpcjaSum << std::endl;
   std::cout << "Eksport: " << eksportSum << std::endl;
   std::cout << "Import: " << importSum << std::endl;
@@ -185,13 +185,13 @@ int App::handleCalculateAveragesBetweenDates() {
   std::string startDate, endDate;
   float autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum;
 
-  std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate);
-  std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
 
   treeData.calculateAveragesBetweenDates(startDate, endDate, autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum);
-  std::cout << "Averages between " << startDate << " and " << endDate << ":" << std::endl;
+  std::cout << "Średnie wartości pomiędzy " << startDate << " a " << endDate << ":" << std::endl;
   std::cout << "Autokonsumpcja: " << autokonsumpcjaSum << std::endl;
   std::cout << "Eksport: " << eksportSum << std::endl;
   std::cout << "Import: " << importSum << std::endl;
@@ -205,17 +205,17 @@ int App::handleCompareDataBetweenDates() {
   std::string startDate1, endDate1, startDate2, endDate2;
   float autokonsumpcjaDiff, eksportDiff, importDiff, poborDiff, produkcjaDiff;
 
-  std::cout << "Enter first start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj pierwszą datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate1);
-  std::cout << "Enter first end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj pierwszą datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate1);
-  std::cout << "Enter second start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj drugą datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate2);
-  std::cout << "Enter second end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj drugą datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate2);
 
   treeData.compareDataBetweenDates(startDate1, endDate1, startDate2, endDate2, autokonsumpcjaDiff, eksportDiff, importDiff, poborDiff, produkcjaDiff);
-  std::cout << "Differences between " << startDate1 << " and " << endDate1 << " and " << startDate2 << " and " << endDate2 << ":" << std::endl;
+  std::cout << "Różnicę pomiędzy " << startDate1 << " a " << endDate1 << " a " << startDate2 << " a " << endDate2 << ":" << std::endl;
   std::cout << "Autokonsumpcja: " << autokonsumpcjaDiff << std::endl;
   std::cout << "Eksport: " << eksportDiff << std::endl;
   std::cout << "Import: " << importDiff << std::endl;
@@ -230,17 +230,17 @@ int App::handleSearchRecordsWithTolerance() {
   float searchValue, tolerance;
   std::vector<LineData> recordsWithTolerance;
 
-  std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę początkową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, startDate);
-  std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
+  std::cout << "Podaj datę końcową (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
-  std::cout << "Enter search value: ";
+  std::cout << "Podaj wartość wyszukiwaną: ";
   std::cin >> searchValue;
-  std::cout << "Enter tolerance: ";
+  std::cout << "Podaj tolerancję: ";
   std::cin >> tolerance;
 
   recordsWithTolerance = treeData.searchRecordsWithTolerance(startDate, endDate, searchValue, tolerance);
-  std::cout << "Records within tolerance:" << std::endl;
+  std::cout << "Znalezione rekordy w zakresie tolerancji:" << std::endl;
   for (const auto& ld : recordsWithTolerance) {
     ld.print();
   }
@@ -252,13 +252,13 @@ int App::handleSaveDataToBinaryFile() {
   std::ofstream file;
   file.open("data.bin", std::ios::binary);
   if (!file.is_open()) {
-    std::cerr << "Error opening file" << std::endl;
+    std::cerr << "Wystąpił błąd podczas otwierania pliku" << std::endl;
     return -1;
   }
 
   treeData.serialize(file);
   file.close();
-  std::cout << "Data saved successfully." << std::endl;
+  std::cout << "Dane zostały pomyślnie zapisane." << std::endl;
 
   return 0;
 }
@@ -267,7 +267,7 @@ int App::handleLoadDataFromBinaryFile() {
   std::ifstream file;
   file.open("data.bin", std::ios::binary);
   if (!file.is_open()) {
-    std::cerr << "Error opening file" << std::endl;
+    std::cerr << "Wystąpił błąd podczas otwierania pliku" << std::endl;
     return -1;
   }
 
@@ -276,7 +276,7 @@ int App::handleLoadDataFromBinaryFile() {
   }
 
   file.close();
-  std::cout << "Data loaded successfully." << std::endl;
+  std::cout << "Dane zostały pomyślnie zapisane." << std::endl;
 
   return 0;
 }
