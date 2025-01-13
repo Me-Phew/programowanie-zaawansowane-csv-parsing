@@ -27,7 +27,13 @@ int loggerErrorCount = 0;
 Logger::Logger(const std::string& filename) {
     auto t = std::time(nullptr);
     std::tm tm;
+
+#if defined(_WIN32) || defined(_WIN64) // For Windows
     localtime_s(&tm, &t);
+#else // For Linux and other POSIX systems
+    localtime_r(&t, &tm);
+#endif
+
     std::ostringstream oss;
     oss << filename << "_" << std::put_time(&tm, "%d%m%Y_%H%M%S") << ".txt";
     std::string datedFilename = oss.str();
@@ -53,7 +59,13 @@ void Logger::log(const std::string& message) {
     if (logFile.is_open()) {
         auto t = std::time(nullptr);
         std::tm tm;
+
+#if defined(_WIN32) || defined(_WIN64) // For Windows
         localtime_s(&tm, &t);
+#else // For Linux and other POSIX systems
+        localtime_r(&t, &tm);
+#endif
+
         logFile << std::put_time(&tm, "%d.%m.%Y %H:%M:%S") << " " << message << std::endl;
     }
 
