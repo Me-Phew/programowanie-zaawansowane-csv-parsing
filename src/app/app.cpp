@@ -138,7 +138,6 @@ int App::handleLoadDataFromFile() {
 }
 
 int App::handleDisplayTreeStructure() {
-  TreeData treeData;
   treeData.print();
 
   return 0;
