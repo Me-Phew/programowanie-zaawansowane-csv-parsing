@@ -8,7 +8,7 @@ jobs:
     permissions:
       contents: write
     env:
-      PROJECT_NAME: 'ProjectName'
+      PROJECT_NAME: 'CsvParsing'
     steps:
       - name: Get latest code
         uses: actions/checkout@v4
