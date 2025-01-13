@@ -148,6 +148,7 @@ int App::handleGetDataBetweenDates() {
   std::vector<LineData> filteredData;
 
   std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cin.ignore();
   std::getline(std::cin, startDate);
   std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
@@ -186,6 +187,7 @@ int App::handleCalculateAveragesBetweenDates() {
   float autokonsumpcjaSum, eksportSum, importSum, poborSum, produkcjaSum;
 
   std::cout << "Enter start date (dd.mm.yyyy hh:mm): ";
+  std::cin.ignore();
   std::getline(std::cin, startDate);
   std::cout << "Enter end date (dd.mm.yyyy hh:mm): ";
   std::getline(std::cin, endDate);
