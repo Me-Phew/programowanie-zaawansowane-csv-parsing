@@ -5,6 +5,8 @@ project(CsvParsing)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(GTEST_ADD_TESTS_NO_EXECUTE ON)
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -42,5 +44,3 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(CsvParsingTest)
-
-set(GTEST_ADD_TESTS_NO_EXECUTE ON)
