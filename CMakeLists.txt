@@ -5,7 +5,10 @@ project(CsvParsing)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(GTEST_ADD_TESTS_NO_EXECUTE ON)
+# Define a flag for enabling/disabling tests
+option(ENABLE_TESTS "Enable building and running tests" ON)
+
+if (ENABLE_TESTS)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -16,6 +19,8 @@ FetchContent_Declare(
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
+endif()
 
 include_directories(src/app src/lineParser src/logger src/treeData)
 
@@ -29,6 +34,8 @@ if (MSVC)
 else()
     add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
+
+if (ENABLE_TESTS)
 
 enable_testing()
 
@@ -44,3 +51,5 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(CsvParsingTest)
+
+endif()
