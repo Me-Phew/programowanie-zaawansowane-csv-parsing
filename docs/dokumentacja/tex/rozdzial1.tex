@@ -1,3 +1,27 @@
 \newpage
 \section{Ogólne określenie wymagań}		%1
 %Określenie celu pracy, co chcemy uzyskać, jakie przewidujemy wyniki
+
+Celem projektu jest implementacja i przetestowanie programu w języku C++ umożliwiającego analizę danych zawartych w pliku CSV. Projekt obejmuje stworzenie modułowego systemu, który umożliwia wczytywanie danych do pamięci komputera, ich przetwarzanie oraz analizę według określonych kryteriów. Głównym założeniem jest zaimplementowanie mechanizmów pozwalających na grupowanie danych w strukturze drzewa, gdzie poszczególne węzły odpowiadają hierarchii czasowej (rok, miesiąc, dzień, ćwiartka doby).
+\subsection{Cel pracy}
+Głównym celem projektu jest:
+\begin{itemize}
+    \item Implementacja programu do analizy danych z pliku CSV w języku C++ z wykorzystaniem struktury modularnej, gdzie każda klasa i funkcjonalność są umieszczone w oddzielnych plikach źródłowych.
+    \item Zastosowanie struktury drzewa hierarchicznego do organizacji danych według jednostek czasowych (rok, miesiąc, dzień, ćwiartka doby) oraz zaimplementowanie wzorca projektowego iterator do poruszania się po drzewie.
+    \item Opracowanie mechanizmów obliczeniowych umożliwiających użytkownikowi wykonywanie operacji takich jak obliczanie sum, średnich, porównań oraz wyszukiwanie danych w określonych przedziałach czasowych.
+    \item Zabezpieczenie programu przed błędami w plikach CSV poprzez bieżącą analizę danych, odrzucanie niepoprawnych rekordów i tworzenie logów z procesu wczytywania.
+    \item Przeprowadzenie testów jednostkowych za pomocą frameworka GoogleTest w celu zapewnienia poprawności działania programu w różnych scenariuszach.
+    \item Opracowanie szczegółowej dokumentacji technicznej projektu przy użyciu narzędzi LaTeX i Doxygen oraz publikacja kodu źródłowego w serwisie GitHub.
+    \item Stworzenie interaktywnego interfejsu użytkownika, który pozwala na wybór operacji z poziomu menu, w tym wczytywanie danych, analizę oraz ich zapis i odczyt w formacie binarnym.
+\end{itemize}
+\newpage
+\subsection{Zakładane wyniki}
+Oczekiwane efekty programu to:
+\begin{itemize}
+    \item Poprawna i wydajna implementacja programu do analizy danych z pliku CSV, który umożliwia wczytywanie, organizowanie i przetwarzanie danych w hierarchicznej strukturze drzewa z uwzględnieniem jednostek czasowych.
+    \item Mechanizmy obliczeniowe pozwalające na wykonywanie operacji takich jak obliczanie sum, średnich, porównań oraz wyszukiwanie rekordów zgodnych z podanymi kryteriami, w tym tolerancji błędu i zakresu czasowego.
+    \item Zbiór testów jednostkowych pokrywających kluczowe funkcjonalności programu, w tym obsługę poprawnych i niepoprawnych danych, dokładność wyników analiz oraz zachowanie programu w nietypowych scenariuszach, takich jak brak ciągłości czasowej w danych.
+    \item Interaktywne menu użytkownika, które pozwala na wybór i realizację operacji, takich jak analiza danych, zapis i odczyt w formacie binarnym oraz wczytywanie danych z plików CSV.
+    \item Szczegółowa dokumentacja techniczna i użytkownika opracowana w narzędziach LaTeX i Doxygen, obejmująca opis struktury programu, założeń projektowych i instrukcji obsługi.
+    \item Repozytorium projektu w serwisie GitHub, zawierające kod źródłowy, testy jednostkowe oraz konfigurację do automatyzacji budowania i testowania za pomocą CMake i GoogleTest.
+\end{itemize}
