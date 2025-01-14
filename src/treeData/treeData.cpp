@@ -202,12 +202,10 @@ std::vector<LineData> TreeData::searchRecordsWithTolerance(const std::string& st
     std::tm tm = {};
     std::istringstream ss(startDate);
     ss >> std::get_time(&tm, "%d.%m.%Y %H:%M");
-    time_t start = mktime(&tm);
 
     ss.clear();
     ss.str(endDate);
     ss >> std::get_time(&tm, "%d.%m.%Y %H:%M");
-    time_t end = mktime(&tm);
 
     for (const auto& yearPair : years) {
         const YearNode& yearNode = yearPair.second;

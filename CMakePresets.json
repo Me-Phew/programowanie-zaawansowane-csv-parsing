@@ -43,7 +43,8 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++"
+        "CMAKE_CXX_COMPILER": "g++",
+        "ENABLE_TESTS": "OFF"
       }
     },
     {
@@ -57,7 +58,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
-        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++"
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "ENABLE_TESTS": "OFF"
       }
     }
   ],

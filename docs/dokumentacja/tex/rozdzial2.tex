@@ -4,3 +4,117 @@
 %Opisać sposób działania programu/algorytmu
 %Napisać spsoób wykorzystania algorytmu po przez wykonanie przykładu (np. mnożenie macierzy - wykonać ręcznie przykład z mnożeniem macierzy pokazujący jak mnoży się macierz ręcznie)
 %Jeśli zadanie zakłada przedstawienie jakiegoś narzędzia (np. git, AI) należy opisać narzędzie
+Analizowany problem dotyczy przetwarzania, organizacji i analizy danych energetycznych zapisanych w formacie CSV. Dane te zawierają kluczowe informacje dotyczące autokonsumpcji, eksportu, importu, poboru oraz produkcji energii w wybranych przedziałach czasowych. Celem projektu jest stworzenie wszechstronnej aplikacji, która umożliwi efektywne zarządzanie danymi, organizując je w sposób hierarchiczny, a także zapewni użytkownikowi narzędzia do ich analizy i raportowania.
+\\
+W centrum problemu leży potrzeba radzenia sobie z dużymi zbiorami danych o różnorodnej jakości i strukturze. Program ma być odporny na typowe problemy związane z nieprzewidywalnością danych wejściowych, takie jak brak ciągłości czasowej, powtarzające się rekordy, puste linie czy brakujące wartości. Dodatkowo, projekt wymaga implementacji struktur danych, które umożliwią szybkie i elastyczne przetwarzanie danych w wybranych przedziałach czasowych, zgodnie z założeniami organizacji w hierarchiczne drzewo.
+\subsection{Parsowanie i przygotowanie danych}
+Prasowanie danych (ang. data wrangling) jest kluczowym etapem w procesie przygotowania danych do analizy, szczególnie w przypadku dużych zbiorów danych, takich jak te, które są przechowywane w formacie CSV. W kontekście tego projektu, parsowanie danych obejmuje szereg czynności mających na celu oczyszczenie, przekształcenie i zorganizowanie surowych danych energetycznych w sposób umożliwiający ich efektywne przetwarzanie oraz analizę. Dla tego projektu kluczowe aspekty prasowania danych to:
+\begin{itemize}
+    \item \textbf{Obsługa brakujących danych} - Pliki CSV mogą zawierać rekordy, w których brakują niektóre wartości, np. dane o autokonsumpcji, eksporcie czy produkcji energii. W takich przypadkach konieczne jest wdrożenie metod ich obsługi, takich jak usuwanie wierszy z brakującymi danymi lub ich uzupełnianie na podstawie dostępnych informacji, np. przy użyciu interpolacji.
+    \item \textbf{Eliminowanie duplikatów} - W procesie wczytywania danych mogą występować powtarzające się wiersze, które prowadzą do błędnych obliczeń lub zafałszowanej analizy. Dlatego ważne jest, by aplikacja automatycznie identyfikowała i usuwała duplikaty z pliku CSV, aby zapewnić spójność i dokładność danych.
+    \newpage
+    \item \textbf{Walidacja danych} - Wiele plików CSV zawiera dane, które mogą być zapisane w nieodpowiednim formacie lub zawierać błędne informacje, np. błędne daty, godziny spoza dozwolonych przedziałów czy wartości liczbowe w złym formacie. Program musi sprawdzać poprawność danych i odrzucać te, które nie spełniają wymagań określonych w specyfikacji. Przykładem może być sprawdzenie, czy godziny pomiaru są w poprawnym formacie 24-godzinnym lub upewnienie się, że wartości dotyczące autokonsumpcji nie są ujemne.
+    \item \textbf{Logowanie i raportowanie błędów} - Ważnym elementem prasowania danych jest także tworzenie raportów o błędach, które umożliwiają analizę nieprawidłowości w plikach CSV. Przykładowo, system powinien zapisywać informacje o odrzuconych rekordach, wskazując przyczyny ich odrzucenia (np. brakujące dane, błędne formaty). Taki raport może być pomocny zarówno w diagnostyce problemów, jak i w przyszłym doskonaleniu procesu przetwarzania danych.
+\end{itemize}
+Parsowanie danych jest więc kluczowym etapem w całym procesie analizy, który umożliwia dalsze, zaawansowane operacje na danych. Dzięki odpowiedniemu oczyszczeniu i organizacji danych, aplikacja będzie w stanie działać szybko, precyzyjnie i bezbłędnie, oferując użytkownikowi wysoką jakość wyników analizy.
+\subsection{Sposób na rozwiązanie problemu}
+W celu rozwiązania problemu przyjęto następujące założenia:
+\\ \\
+\textbf{Format danych wejściowych}
+\\
+Dane w pliku CSV składają się z kolumn:
+\begin{itemize}
+    \item Data i godzina pomiaru,
+    \item Autokonsumpcja (energia zużywana na bieżąco),
+    \item Eksport (energia wysyłana do sieci),
+    \item Import (energia pobierana z sieci),
+    \item Pobór (całkowita energia zużyta),
+    \item Produkcja (energia wytworzona przez falownik).
+\end{itemize}
+\newpage
+\noindent \textbf{Struktura organizacji danych}
+\\
+Dane mają być przechowywane w strukturze drzewa, której poziomy odpowiadają kolejno:
+\begin{itemize}
+    \item Rokowi,
+    \item Miesiącowi,
+    \item Dniowi,
+    \item Ćwiartkom dnia (00:00–5:45, 6:00–11:45, 12:00–17:45, 18:00–23:45).
+\end{itemize}
+Drzewo powinno umożliwiać dostęp do danych w dowolnym przedziale czasowym.
+\\ \\
+\textbf{Obłsuga danych wejściowych}
+\\
+Program musi obsługiwać dane o nieprzewidywalnej strukturze, w tym:
+\begin{itemize}
+    \item Puste linie,
+    \item Niekompletne rekordy,
+    \item Powtarzające się wiersze.
+\end{itemize}
+Wszystkie błędne dane powinny być odrzucane, a ich analiza powinna być logowana w dwóch plikach: jeden dla pełnego raportu procesu, a drugi dla szczegółowego opisu błędów.
+\\ \\
+\textbf{Funkcjonalność aplikacji}
+\\ 
+Program ma oferować użytkownikowi możliwość interakcji za pomocą menu, które obejmuje:
+\begin{itemize}
+    \item Wczytywanie danych z pliku CSV,
+    \item Zapisywanie i odczytywanie danych w formacie binarnym,
+    \item Analizę danych, w tym obliczanie sum, średnich i porównania wartości w różnych przedziałach czasowych,
+    \item Filtrowanie rekordów na podstawie określonych kryteriów.
+\end{itemize}
+\newpage
+\subsection{Ograniczenia i wyzwania}
+W trakcie analizy zidentyfikowano potencjalne ograniczenia i trudności:
+\\ \\
+\textbf{Wydajność:}
+\begin{itemize}
+    \item Przetwarzanie dużych plików CSV może wymagać znacznych zasobów pamięci i mocy obliczeniowej.
+    \item Konieczne jest zaimplementowanie wydajnych algorytmów oraz odpowiedniego zarządzania pamięcią, aby uniknąć spowolnień.
+\end{itemize}
+\textbf{Nieprzewidywalność danych:}
+\begin{itemize}
+    \item Dane mogą być niekompletne, powtarzające się lub zapisane w różnej kolejności, co wymaga dokładnej walidacji i przetwarzania.
+\end{itemize}
+\textbf{Złożoność struktury drzewa:}
+\begin{itemize}
+    \item Implementacja drzewa z wieloma poziomami wymaga precyzyjnego projektowania, szczególnie w przypadku braku ciągłości czasowej w danych.
+\end{itemize}
+\textbf{Synchronizacja modułów:}
+\begin{itemize}
+    \item Zapewnienie, że różne moduły programu (wczytywanie danych, operacje na drzewie, zapisywanie do plików) działają spójnie, może być wyzwaniem.
+\end{itemize}
+\textbf{Obsługa błędów:}
+\begin{itemize}
+    \item Program musi być odporny na awarie wynikające z nieprawidłowych danych, jednocześnie generując szczegółowe raporty o błędach.
+\end{itemize}
+\newpage
+\subsection{Wykorzystanie aplikacji w praktyce}
+\textbf{Zarządzanie energią w budynkach komercyjnych i mieszkalnych}: \\
+Aplikacja może być wykorzystana w inteligentnych budynkach (tzw. smart buildings) do monitorowania i optymalizacji zużycia energii.
+\begin{itemize}
+    \item Monitorowanie autokonsumpcji - Analiza, ile energii zużywa budynek w czasie rzeczywistym, np. dla budynków wyposażonych w panele fotowoltaiczne.
+    \item Optymalizacja zużycia - Identyfikacja okresów szczytowego poboru energii, co pozwala na dostosowanie harmonogramu pracy urządzeń elektrycznych.
+    \item Raportowanie kosztów - Generowanie raportów zużycia i oszczędności, co pomaga użytkownikom indywidualnym i przedsiębiorstwom kontrolować koszty energii.
+\end{itemize}
+\textbf{Zarządzanie farmami fotowoltaicznymi i wiatrowymi}: \\
+Farmy produkujące energię odnawialną wymagają precyzyjnych narzędzi do monitorowania i analizy danych.
+\begin{itemize}
+    \item Monitorowanie wydajności paneli fotowoltaicznych - Aplikacja może pomóc w analizie, jak skutecznie działają panele w różnych warunkach pogodowych.
+    \item Zarządzanie eksportem energii do sieci - Umożliwia optymalne zarządzanie przesyłem energii do sieci energetycznej i minimalizację strat.
+    \item Identyfikacja usterek - Szybkie wykrywanie problemów, takich jak niesprawne panele czy turbiny, na podstawie analizy odchyłów w danych energetycznych.
+\end{itemize}
+\textbf{Energetyka i dostawcy energii}: \\
+Dostawcy energii mogą wykorzystać aplikację do monitorowania przepływów energii i optymalizacji jej dystrybucji. 
+\begin{itemize}
+    \item Analiza eksportu i importu energii - Umożliwia ocenę, ile energii jest przesyłane między różnymi punktami sieci, oraz identyfikację miejsc przeciążenia sieci.
+    \item Prognozowanie zapotrzebowania na energię - Dzięki analizie historycznych danych dostawcy mogą przewidywać zapotrzebowanie na energię w różnych porach dnia i roku.
+\end{itemize}
+\newpage
+\subsection{Możliwości rozwoju i przyszłe rozszerzenia}
+Projekt ma potencjał do dalszego rozwoju i implementacji dodatkowych funkcji w przyszłości, które mogą przyczynić się do jeszcze lepszego zarządzania danymi energetycznymi. Potencjalne kierunki rozwoju obejmują:
+\begin{itemize}
+\item\textbf{Integracja z systemami IoT} - Możliwość łączenia aplikacji z urządzeniami IoT, takimi jak inteligentne liczniki energii, czujniki czy panele fotowoltaiczne, pozwoli na zbieranie danych w czasie rzeczywistym oraz ich natychmiastową analizę, co umożliwi szybszą reakcję na zmiany w zużyciu energii.
+\item\textbf{Predykcja i sztuczna inteligencja} - W przyszłości aplikacja może być rozbudowana o moduł predykcji zapotrzebowania na energię na podstawie analizy dużych zbiorów danych. Sztuczna inteligencja (AI) mogłaby przewidywać wzorce zużycia energii, identyfikować anomalie i proponować optymalizację w czasie rzeczywistym.
+\item\textbf{Zwiększenie wydajności algorytmów przetwarzania danych} - Ze względu na rosnącą ilość danych energetycznych, możliwe jest zaimplementowanie algorytmów opartych na technologiach rozproszonego przetwarzania, takich jak obliczenia w chmurze, co pozwoli na skalowanie aplikacji do obsługi jeszcze większych zbiorów danych.
+\item\textbf{Rozszerzenie formatu wejściowego} - Rozważenie dodania obsługi innych formatów danych wejściowych (np. JSON, XML), co pozwoli na szersze wykorzystanie aplikacji w różnych środowiskach i z różnymi źródłami danych.
+\end{itemize}
