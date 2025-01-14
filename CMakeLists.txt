@@ -42,3 +42,5 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(CsvParsingTest)
+
+set(GTEST_ADD_TESTS_NO_EXECUTE ON)
